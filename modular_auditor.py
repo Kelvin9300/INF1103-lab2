@@ -27,28 +27,16 @@ total_units = 0
 failed_entries = 0
 
 while True:
-    entry = input("Enter stock quantity (or 'quit' to finish): ")
+    fails, entry = get_valid_input()
+    failed_entries += fails
     if entry == "quit":
         break
-    # more logic goes here
-    is_negative = entry.startswith("-") and entry[1:].isdigit()
-
-    if is_negative:
-        print("Error: negative numbers are not allowed")
-        failed_entries += 1
-        continue
-    elif not entry.isdigit():
-        print("Error: please enter a valid number")
-        failed_entries += 1
-        continue
-
-    quantity = int(entry)
-    total_units += quantity
+    total_units = process_delivery(total_units, entry)
+    tax = calculate_tax(entry)
     if total_units > 500:
         print(f"ALERT: Inventory exceeds 500 units! Total is {total_units}. Stopping.")
         break
     else:
-        print(f"Accepted {quantity} units. Running total: {total_units}")
+        print(f"Accepted {entry} units. Tax: {tax:.2f}. Running total: {total_units}")
 
-print(f"Total Units Processed: {total_units}")
-print(f"Number of Failed/Rejected Entries: {failed_entries}")
+generate_report(total_units, failed_entries)

@@ -1,15 +1,18 @@
 def get_valid_input():
+    fail_count = 0
     while True:
         entry = input("Enter stock quantity (or 'quit' to finish): ")
         if entry == "quit":
-            return "quit"
+            return fail_count, "quit"
         is_negative = entry.startswith("-") and entry[1:].isdigit()
         if is_negative:
             print("Error: negative numbers are not allowed")
+            fail_count += 1
         elif not entry.isdigit():
             print("Error: please enter a valid number")
+            fail_count += 1
         else:
-            return int(entry)
+            return fail_count, int(entry)
 def calculate_tax(amount):
     tax = amount * 0.10
     return tax

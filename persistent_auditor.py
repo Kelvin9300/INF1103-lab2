@@ -37,6 +37,11 @@ def process_delivery(current_total, new_value):
 def generate_report(total_units, failed_attempts):
     print(f"Total Units Processed: {total_units}")
     print(f"Number of Failed/Rejected Entries: {failed_attempts}")
+def save_inventory(total_units, history):
+    with open("inventory.txt", "w") as file:
+    file.write(f"{total_units}\n")
+    history_strings = [str(x) for x in history]
+    file.write(",".join(history_strings))
     
 total_units = 0
 failed_entries = 0

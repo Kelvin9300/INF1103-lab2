@@ -43,19 +43,24 @@ def save_inventory(total_units, history):
     history_strings = [str(x) for x in history]
     file.write(",".join(history_strings))
     
-total_units = 0
+total_units, history = load_inventory()
 failed_entries = 0
 
 while True:
     fails, entry = get_valid_input()
     failed_entries += fails
     if entry == "quit":
+        save_inventory(total_units, history)
         break
+    
     total_units = process_delivery(total_units, entry)
+    history.append(entry)
     tax = calculate_tax(entry)
     if total_units > 500:
         print(f"ALERT: Inventory exceeds 500 units! Total is {total_units}. Stopping.")
+        save_inventory(total_units, history)
         break
+
     else:
         print(f"Accepted {entry} units. Tax: {tax:.2f}. Running total: {total_units}")
 

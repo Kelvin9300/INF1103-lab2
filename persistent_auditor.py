@@ -39,9 +39,9 @@ def generate_report(total_units, failed_attempts):
     print(f"Number of Failed/Rejected Entries: {failed_attempts}")
 def save_inventory(total_units, history):
     with open("inventory.txt", "w") as file:
-    file.write(f"{total_units}\n")
-    history_strings = [str(x) for x in history]
-    file.write(",".join(history_strings))
+        file.write(f"{total_units}\n")
+        history_strings = [str(x) for x in history]
+        file.write(",".join(history_strings))
     
 total_units, history = load_inventory()
 failed_entries = 0

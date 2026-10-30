@@ -13,9 +13,25 @@ class Product:
     def display_information(self):
         print(f"ID: {self.__product_id} | Name: {self.__name} | Price: ${self.__price:.2f} | Stock: {self.__stock}")
 
+    def get_product_id(self):
+        return self.__product_id
+
+    def get_name(self):
+        return self.__name
+
+    def get_price(self):
+        return self.__price
+
+    def get_stock(self):
+        return self.__stock
 if __name__ == "__main__":
     p = Product("P001", "Laptop", 1200.00, 15)
     p.display_information()
     print(p.update_stock(-10))
     print(p.update_stock(50))
     p.display_information()
+
+    print(p.get_product_id())
+    print(p.get_name())
+    print(p.get_price())
+    print(p.get_stock())

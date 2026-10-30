@@ -24,6 +24,15 @@ class Product:
 
     def get_stock(self):
         return self.__stock
+
+    def to_dict(self):
+        return {
+            "id": self.__product_id,
+            "name": self.__name,
+            "price": self.__price,
+            "stock": self.__stock
+        }
+    
 if __name__ == "__main__":
     p = Product("P001", "Laptop", 1200.00, 15)
     p.display_information()
@@ -35,3 +44,4 @@ if __name__ == "__main__":
     print(p.get_name())
     print(p.get_price())
     print(p.get_stock())
+    print(p.to_dict())

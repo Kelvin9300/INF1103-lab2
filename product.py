@@ -1,4 +1,6 @@
-class Product:
+from abc import ABC, abstractmethod
+
+class Product(ABC):
     def __init__(self, product_id, name, price, stock):
         self.__product_id = product_id
         self.__name = name
@@ -32,16 +34,12 @@ class Product:
             "price": self.__price,
             "stock": self.__stock
         }
+    @abstractmethod
+    def get_fulfilment_info(self):
+        pass
     
 if __name__ == "__main__":
-    p = Product("P001", "Laptop", 1200.00, 15)
-    p.display_information()
-    print(p.update_stock(-10))
-    print(p.update_stock(50))
-    p.display_information()
-
-    print(p.get_product_id())
-    print(p.get_name())
-    print(p.get_price())
-    print(p.get_stock())
-    print(p.to_dict())
+    try:
+        p = Product("P001", "Laptop", 1200.00, 15)
+    except TypeError as e:
+        print("Cannot create Product directly:", e)

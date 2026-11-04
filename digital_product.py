@@ -21,3 +21,6 @@ if __name__ == "__main__":
     print(d.get_name())
     print(d.get_download_size())
     print(d.get_fulfilment_info())
+
+    from can_be_shipped import CanBeShipped
+    print(isinstance(d, CanBeShipped))

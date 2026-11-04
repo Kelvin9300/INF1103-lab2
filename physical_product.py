@@ -19,6 +19,12 @@ class PhysicalProduct(Product, CanBeShipped):
     def get_fulfilment_info(self):
         return "This product requires physical shipping."
 
+    def to_dict(self):
+        data = super().to_dict()
+        data["type"] = "physical"
+        data["weight"] = self.__weight
+        return data
+
 if __name__ == "__main__":
     p = PhysicalProduct("P006", "Guitar", 350.00, 5, 4.5)
     p.display_information()
@@ -30,3 +36,4 @@ if __name__ == "__main__":
     light = PhysicalProduct("P008", "USB Cable", 9.90, 50, 0.2)
     print(f"Shipping for {p.get_name()}: ${p.calculate_shipping_cost():.2f}")
     print(f"Shipping for {light.get_name()}: ${light.calculate_shipping_cost():.2f}")
+    print(p.to_dict())

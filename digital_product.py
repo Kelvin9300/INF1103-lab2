@@ -14,6 +14,12 @@ class DigitalProduct(Product):
     
     def get_fulfilment_info(self):
         return "This product will be delivered digitally."
+
+    def to_dict(self):
+        data = super().to_dict()
+        data["type"] = "digital"
+        data["download_size"] = self.__download_size
+        return data
     
 if __name__ == "__main__":
     d = DigitalProduct("P007", "Antivirus Licence", 49.90, 100, 350)
@@ -24,3 +30,4 @@ if __name__ == "__main__":
 
     from can_be_shipped import CanBeShipped
     print(isinstance(d, CanBeShipped))
+    print(d.to_dict())

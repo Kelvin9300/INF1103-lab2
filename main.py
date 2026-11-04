@@ -1,8 +1,8 @@
 import json
 import os
-from product import Product
+from physical_product import PhysicalProduct
+from digital_product import DigitalProduct
 from inventory import Inventory
-
 
 def load_inventory():
     if os.path.exists("inventory.json"):
@@ -13,14 +13,18 @@ def load_inventory():
     else:
         print("inventory.json not found. Starting with default inventory.")
         data = [
-            {"id": "P001", "name": "Laptop", "price": 1200.00, "stock": 15},
-            {"id": "P002", "name": "Mouse", "price": 25.50, "stock": 40},
-            {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25}
+            {"id": "P001", "name": "Laptop", "price": 1200.00, "stock": 15, "type": "physical", "weight": 2.0},
+            {"id": "P002", "name": "Mouse", "price": 25.50, "stock": 40, "type": "physical", "weight": 0.5},
+            {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25, "type": "physical", "weight": 0.8},
+            {"id": "P004", "name": "Antivirus Licence", "price": 49.90, "stock": 100, "type": "digital", "download_size": 350},
         ]
 
     inventory = Inventory()         
     for item in data:
-        product = Product(item["id"], item["name"], item["price"], item["stock"])
+        if item["type"] == "physical":
+            product = PhysicalProduct(item["id"], item["name"], item["price"], item["stock"], item["weight"])
+        else:
+            product = DigitalProduct(item["id"], item["name"], item["price"], item["stock"], item["download_size"])
         inventory.add_product(product)
     return inventory
 

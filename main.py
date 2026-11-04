@@ -54,11 +54,23 @@ while True:
         inventory.display_all()
     elif choice == "2":
         print("Add New Product")
+        product_type = input("Product type (physical/digital): ").lower()
+        if product_type not in ("physical", "digital"):
+            print("Invalid product type. Product not added.")
+            continue
         id = input("Product ID: ")
         name = input("Product Name: ")
         price = float(input("Price: "))
         stock = int(input("Stock Quantity: "))
-        product = Product(id, name, price, stock)
+        if product_type == "physical":
+            weight = float(input("Weight (kg): "))
+            product = PhysicalProduct(id, name, price, stock, weight)
+        elif product_type == "digital":
+            download_size = float(input("Download Size (MB): "))
+            product = DigitalProduct(id, name, price, stock, download_size)
+        else:
+            print("Invalid product type. Product not added.")
+            continue
         inventory.add_product(product)
         print("Product added successfully!")
     elif choice == "3":

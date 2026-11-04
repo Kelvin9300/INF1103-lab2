@@ -30,5 +30,21 @@
         "stock": 100,
         "type": "digital",
         "download_size": 350
+    },
+    {
+        "id": "P005",
+        "name": "Cable",
+        "price": 10.0,
+        "stock": 50,
+        "type": "physical",
+        "weight": 0.2
+    },
+    {
+        "id": "P006",
+        "name": "E-Book",
+        "price": 10.0,
+        "stock": 20,
+        "type": "digital",
+        "download_size": 20.0
     }
 ]

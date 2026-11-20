@@ -5,11 +5,16 @@ from supplier import Supplier
 class Product(ABC):
     def __init__(self, product_id: str, name: str, price: float, stock: int,
                  supplier: Supplier) -> None:
+        # Validation: Product owns the rules for its own price and stock
+        if price <= 0:
+            raise ValueError("Price must be greater than zero.")
+        if stock < 0:
+            raise ValueError("Stock quantity cannot be negative.")
         self.__product_id: str = product_id
         self.__name: str = name
         self.__price: float = price
         self.__stock: int = stock
-        self.__supplier: Supplier = supplier  # association: a reference, not ownership
+        self.__supplier: Supplier = supplier
 
     def update_stock(self, quantity: int) -> bool:
         if quantity < 0:

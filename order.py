@@ -1,17 +1,27 @@
 from product import Product
 from order_line import OrderLine
+from discount_strategy import DiscountStrategy
+from no_discount import NoDiscount
 
 
 class Order:
-    def __init__(self, order_id: str) -> None:
+    def __init__(self, order_id: str, discount: DiscountStrategy | None = None) -> None:
         self.__order_id: str = order_id
         self.__order_lines: list[OrderLine] = []  # composition: Order creates and owns these
+        # Association: the strategy is used by the order, not owned by it
+        self.__discount: DiscountStrategy = discount if discount is not None else NoDiscount()
 
     def get_order_id(self) -> str:
         return self.__order_id
 
+    def set_discount(self, discount: DiscountStrategy) -> None:
+        self.__discount = discount
+
+    def get_discount(self) -> DiscountStrategy:
+        return self.__discount
+
     def add_order_line(self, product: Product, quantity: int) -> None:
-        order_line = OrderLine(product, quantity)  # created here, inside the Order
+        order_line = OrderLine(product, quantity)
         self.__order_lines.append(order_line)
 
     def remove_order_line(self, product_id: str) -> bool:
@@ -25,10 +35,8 @@ class Order:
         return list(self.__order_lines)
 
     def calculate_total(self) -> float:
-        total = 0.0
-        for order_line in self.__order_lines:
-            total += order_line.calculate_subtotal()
-        return total
+        total = sum(line.calculate_subtotal() for line in self.__order_lines)
+        return self.__discount.apply(total)  # no discount if/elif here
 
     def display_order(self) -> None:
         print(f"Order {self.__order_id}")

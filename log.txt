@@ -1,0 +1,240 @@
+commit e1a0c4e810bf972907a487fa67796647da4a69f9
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 19:03:34 2026 +0800
+
+    Updated UML diagram for Lab 7
+
+commit e16b2319c148eb145c584db8fe5e4137c70851e9
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 18:32:29 2026 +0800
+
+    Add Product supports physical and digital types
+
+commit f1303e6b1f812aa6b997d62c17facae33cb9a6e6
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 18:19:08 2026 +0800
+
+    Loader creates subclasses by type; added typed defaults
+
+commit 44ba3c427d9b180f8c5ae1d3c983eb73ae38b427
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 18:09:10 2026 +0800
+
+    Added type-aware to_dict to subclasses
+
+commit d119f08356ba4f82cbdc34adaf4f9d832c0b5617
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 18:04:42 2026 +0800
+
+    Added CanBeShipped interface and shipping cost
+
+commit ea92a12d526ce3c15d944d9950ce0505f04d04a0
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 17:59:04 2026 +0800
+
+    Made Product abstract and implemented get_fulfilment_info
+
+commit f330907a2c9dc09448af4727e5098eaafe4dd50f
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 17:31:07 2026 +0800
+
+    Created Physical_Product class
+
+commit ae1adee6a92c668ad1e819368a0409e89e2e6de4
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 17:19:52 2026 +0800
+
+    Added .gitignore
+
+commit 682f939f8d04327c0f12e29f6d71c3de2d5cb9d1
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 17:48:25 2026 +0800
+
+    Completed OOP inventory management system
+
+commit 2476fbe87e4d5ada4f00d0844d69a2682b11aa1d
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 17:09:20 2026 +0800
+
+    Refactored inventory system using OOP
+
+commit 63f19088cb78db5d179d53fb4a8dcd752af33f54
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 16:43:58 2026 +0800
+
+    Created Inventory class
+
+commit 91a2d5c7d607f2251c03a769b500682c999086aa
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 16:18:28 2026 +0800
+
+    Added to_dict to Product
+
+commit def4c36ed7eefb5c201ddc5c10adb6a060fc5d31
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 16:15:45 2026 +0800
+
+    Added getters to Product
+
+commit 3a881981597ac4cce0d206bc013190c622dd333e
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 16:07:06 2026 +0800
+
+    Created Product class with update_stock and display_information
+
+commit 17f6d360bf740aaa4af832db6b1c5786540408b7
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 17:01:50 2026 +0800
+
+    Added menu system connecting all inventory functions
+
+commit 5c8210dfbd3eb926bf6fb1dd9c06414a14aea2c1
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 16:54:06 2026 +0800
+
+    Added load_inventory and save_inventory function
+
+commit 555133f06dc43cac7017aacbe195568581c76c04
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 16:48:31 2026 +0800
+
+    Added search_product and update_stock function
+
+commit 2bbc5be061b1a7d63e764891551aeb66435edded
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 16:45:40 2026 +0800
+
+    Added add_product function
+
+commit 7d7523e811624020e2f46a9512313125736cecf1
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 16:39:20 2026 +0800
+
+    Added Dictionary list and display_all
+
+commit 736aaaf6ea07de6aa9ac23e92f2ede2c0e8414df
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 19:09:51 2026 +0800
+
+    Wire history tracking and save_inventory into main loop
+
+commit 4ffad78ff7a09deeb0172a1e89d672c3a70e34ea
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 19:04:19 2026 +0800
+
+    Wire history tracking and save_inventory into main loop
+
+commit 336c0d45cb7bc2a38788394fd29ca8faa95f82ce
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 18:51:57 2026 +0800
+
+    Add save
+
+commit 2586fb4eb8dea849b0abb72beb945b6c426a95cb
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 18:49:03 2026 +0800
+
+    Add load_inventory function
+
+commit b0f19baf8ea3d5bb56a1488d1bba05a4ce233180
+Merge: 38fb05a 5903d8d
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 18 17:29:36 2026 +0800
+
+    Merge branch 'master' of https://github.com/Kelvin9300/INF1103-lab2
+
+commit 38fb05a75f974f688e8729482b5f5f37459b41fd
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 18 17:26:23 2026 +0800
+
+    Lab 3 modular_auditor.py
+
+commit e296ee695c63ddd79abc79ec1844f4290cc01883
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 18 17:19:49 2026 +0800
+
+    Update get_valid_input to return fail count
+
+commit 47ae6eca6b558530498a00b3d2b63d0388b5a873
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 18 17:13:49 2026 +0800
+
+    add_generate_report__functions
+
+commit 06885f99046571fc977febf2deaa40d880b6e11d
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 18 17:12:27 2026 +0800
+
+    add_delivery_process_functions
+
+commit 705b7753040820fbe9c4392286901954e7212e2b
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 18 17:08:20 2026 +0800
+
+    add_calculate_tax_functions
+
+commit d825592c1844eca286387edbe4869cbdb94334ca
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 18 17:06:07 2026 +0800
+
+    add_valid_input_functions
+
+commit 5903d8d8cb236668be3a7dd77a560c640a39fdf0
+Author: Kelvin9300 <2603030@sit.singaporetech.edu.sg>
+Date:   Mon Sep 14 19:37:04 2026 +0800
+
+    Delete hello.py
+
+commit 49826e18f3b1f47b0463107e45363c9686cc93dd
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Mon Sep 14 19:20:24 2026 +0800
+
+    Lab2
+
+commit 14bcbb72d7702f6f94c9bf29ae36fc4a5ded03ca
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 18:03:18 2026 +0800
+
+    The Scenario
+
+commit bdd241361b1944617c8ba4df5425ee736bb40226
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 18:04:23 2026 +0800
+
+    Activity 5
+
+commit 07d640ed28510a2de81d64c7b9960f309fd93ef4
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 18:02:01 2026 +0800
+
+    Activity 4
+
+commit 3c3d6a39e8359ca171fe699d96a968be655666ec
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 17:57:44 2026 +0800
+
+    Activity 3
+
+commit 3269636c421f9747bbb9bbfa20872c7c6ad732b2
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 17:56:40 2026 +0800
+
+    Activity 2
+
+commit ee7648fc3af1bdfadff40e714985a0ad917e9478
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 17:52:48 2026 +0800
+
+    First Post
+
+commit 8869210007b98656e0403153b4ac3439c538ee94
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 17:49:49 2026 +0800
+
+    First Post
+
+commit e35dc8b8625df04c82c2eed0e62223a90b7088ce
+Author: Kelvin <2603030@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 17:44:37 2026 +0800
+
+    First Post

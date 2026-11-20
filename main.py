@@ -2,9 +2,9 @@ import json
 import os
 from supplier import Supplier
 from product import Product
-from physical_product import PhysicalProduct
-from digital_product import DigitalProduct
+from product_factory import ProductFactory
 from inventory import Inventory
+from input_helpers import get_positive_float, get_non_negative_int
 
 DEFAULT_SUPPLIER: dict[str, str] = {
     "supplier_id": "S001", "name": "TechWorld", "contact_email": "sales@techworld.com"
@@ -24,44 +24,58 @@ def get_or_create_supplier(data: dict[str, str]) -> Supplier:
 def create_product(item: dict) -> Product:
     # Older saves have no supplier, so fall back to the default supplier
     supplier = get_or_create_supplier(item.get("supplier", DEFAULT_SUPPLIER))
-    if item["type"] == "physical":
-        return PhysicalProduct(item["id"], item["name"], item["price"], item["stock"],
-                               supplier, item["weight"])
-    return DigitalProduct(item["id"], item["name"], item["price"], item["stock"],
-                          supplier, item["download_size"])
+    return ProductFactory.create(item["type"], item["id"], item["name"], item["price"],
+                                 item["stock"], supplier,
+                                 weight=item.get("weight", 0.0),
+                                 download_size=item.get("download_size", 0.0))
+
+
+def default_data() -> list[dict]:
+    software_supplier = {"supplier_id": "S002", "name": "SoftHub",
+                         "contact_email": "hello@softhub.com"}
+    return [
+        {"id": "P001", "name": "Laptop", "price": 1200.00, "stock": 15,
+         "supplier": DEFAULT_SUPPLIER, "type": "physical", "weight": 2.0},
+        {"id": "P002", "name": "Mouse", "price": 25.50, "stock": 40,
+         "supplier": DEFAULT_SUPPLIER, "type": "physical", "weight": 0.5},
+        {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25,
+         "supplier": DEFAULT_SUPPLIER, "type": "physical", "weight": 0.8},
+        {"id": "P004", "name": "Antivirus Licence", "price": 49.90, "stock": 100,
+         "supplier": software_supplier, "type": "digital", "download_size": 350}
+    ]
 
 
 def load_inventory() -> Inventory:
-    if os.path.exists("inventory.json"):
-        print("inventory.json found.")
+    data: list[dict]
+    try:
         with open("inventory.json", "r") as file:
             data = json.load(file)
-        print("Inventory loaded successfully.")
-    else:
+    except FileNotFoundError:
         print("inventory.json not found. Starting with default inventory.")
-        software_supplier = {"supplier_id": "S002", "name": "SoftHub",
-                             "contact_email": "hello@softhub.com"}
-        data = [
-            {"id": "P001", "name": "Laptop", "price": 1200.00, "stock": 15,
-             "supplier": DEFAULT_SUPPLIER, "type": "physical", "weight": 2.0},
-            {"id": "P002", "name": "Mouse", "price": 25.50, "stock": 40,
-             "supplier": DEFAULT_SUPPLIER, "type": "physical", "weight": 0.5},
-            {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25,
-             "supplier": DEFAULT_SUPPLIER, "type": "physical", "weight": 0.8},
-            {"id": "P004", "name": "Antivirus Licence", "price": 49.90, "stock": 100,
-             "supplier": software_supplier, "type": "digital", "download_size": 350}
-        ]
+        data = default_data()
+    except json.JSONDecodeError:
+        print("inventory.json is damaged. Starting with default inventory.")
+        data = default_data()
+    else:
+        print("inventory.json found.")
+        print("Inventory loaded successfully.")
 
     inventory = Inventory()
     for item in data:
-        inventory.add_product(create_product(item))
+        try:
+            inventory.add_product(create_product(item))
+        except (KeyError, ValueError) as e:
+            print(f"Skipped invalid product {item.get('id', '?')}: {e}")
     return inventory
 
 
 def save_inventory(inventory: Inventory) -> None:
     data = [product.to_dict() for product in inventory.get_products()]
-    with open("inventory.json", "w") as file:
-        json.dump(data, file, indent=4)
+    try:
+        with open("inventory.json", "w") as file:
+            json.dump(data, file, indent=4)
+    except OSError as e:
+        print(f"Could not save inventory: {e}")
 
 
 print("=" * 40)
@@ -92,8 +106,8 @@ while True:
             continue
         id = input("Product ID: ")
         name = input("Product Name: ")
-        price = float(input("Price: "))
-        stock = int(input("Stock Quantity: "))
+        price = get_positive_float("Price: ")
+        stock = get_non_negative_int("Stock Quantity: ")
 
         supplier_id = input("Supplier ID: ")
         if supplier_id in suppliers:
@@ -105,12 +119,19 @@ while True:
             supplier = get_or_create_supplier({"supplier_id": supplier_id, "name": supplier_name,
                                                "contact_email": supplier_email})
 
+        weight = 0.0
+        download_size = 0.0
         if product_type == "physical":
-            weight = float(input("Weight (kg): "))
-            product = PhysicalProduct(id, name, price, stock, supplier, weight)
+            weight = get_positive_float("Weight (kg): ")
         else:
-            download_size = float(input("Download Size (MB): "))
-            product = DigitalProduct(id, name, price, stock, supplier, download_size)
+            download_size = get_positive_float("Download Size (MB): ")
+
+        try:
+            product = ProductFactory.create(product_type, id, name, price, stock, supplier,
+                                            weight=weight, download_size=download_size)
+        except ValueError as e:
+            print(f"Product not added: {e}")
+            continue
         inventory.add_product(product)
         print("Product added successfully!")
     elif choice == "3":
@@ -121,7 +142,7 @@ while True:
             print("Product Found:")
             print(f"Name: {product.get_name()}")
             print(f"Current Stock: {product.get_stock()}")
-            new_stock = int(input("New Stock Quantity: "))
+            new_stock = get_non_negative_int("New Stock Quantity: ")
             if product.update_stock(new_stock):
                 print("Stock updated successfully!")
             else:
